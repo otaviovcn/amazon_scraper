@@ -13,7 +13,7 @@ app.get("/api/scrape", (req, res) => {
   res.send('Scraping functionality is not implemented yet.');
 });
 
-// Tells the server to start listening for requests
+// Tell the server to start listening for requests, that is, "turn on" it
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
