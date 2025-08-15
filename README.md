@@ -1,32 +1,138 @@
-# Test Project Task
+# Amazon Scrapper 🚀
 
-Objective: Create a simple script to scrape Amazon product listings from the first page of search results for a given keyword.
+This project was developed as part of a technical challenge. It consists of a full-stack application that collects data from the first page of Amazon results, searching for a user-specified search term (🪒 🎲).
 
-Task Requirements:
+# Main Objective
 
-    Backend/API (Bun):
-        Set up a Bun project with the necessary dependencies (express, axios and JSDOM).
-        Write a script using axios to fetch the contents of the Amazon search results page for a given keyword.
-        Use JSDOM to parse the HTML content and extract the following details for each product listing on the first page:
-            Product Title
-            Rating (stars out of five)
-            Number of reviews
-            Product image URL
-        Create an endpoint /api/scrape where a GET request with a query parameter ?keyword=yourKeyword initiates the scraping process and returns the extracted data in JSON format.
-    Frontend (HTML, CSS, Vanilla JavaScript with Vite):
-        Develop a simple webpage with:
-            An input field to enter the search keyword.
-            A button to initiate the scraping process.
-        Style the webpage to be user-friendly and presentable.
-        Implement JavaScript to make an AJAX call to the backend endpoint when the button is clicked, and display the results formatted cleanly on the page.
+- Receives a search term via the frontend
+- Makes a request to the backend
+- The backend scrapes Amazon using `axios` and `jsdom`
+- Returns the data for the products found
+- Displays the results clearly and stylishly on the frontend
 
-Documentation:
+## ⚠️ Technical Observations
 
-    Provide comments within your code to offer clarity on your logic and process.
-    Include a README.md file with the setup and running instructions
+Amazon has anti-scraping systems that can block automated requests, even with headers simulating browsers. Therefore, the backend was programmed to return mocked data when the real request fails, ensuring that the frontend remains functional and demonstrable.
 
-Considerations:
+This approach allows validation of the entire project structure, including:
 
-    Ensure you handle errors gracefully both on the backend and frontend.
-    Provide clear instructions on how to run the application.
-    The cleaner and more functional the code is, the better.
+- Communication between frontend and backend
+- Data manipulation with JSDOM
+- Styling and display of results
+
+> ⚠️ I know I left a lot of comments, but I really wanted to leave my reasoning.
+
+# General information
+
+<details>
+  <summary><strong>🤷🏽‍♀️ Real-world applicability</strong></summary><br />
+    This type of solution can be used for market analysis, price monitoring, product metrics collection, or integration with recommendation systems. Furthermore, the architecture, which separates backend and frontend, facilitates scalability and maintenance, allowing adaptations to different data sources.
+</details>
+
+<details>
+  <summary><strong>👨‍💻 Base structure</strong></summary><br />
+ 
+        amazon_scraper/
+        ├── backend/
+        │   ├── src/
+        │   │   └── index.ts
+        │   └── mocks/
+        │       └── tvMocks.ts
+        ├── frontend/
+        │   ├── index.html
+        │   ├── src/
+        │   │   ├── main.js
+        │   │   └── style.css
+        │   └── vite.config.js
+
+
+</details>
+
+<details>
+  <summary><strong>👀 Technologies used:</strong></summary><br />
+  1. Back-end:
+  <ul>
+    <li>Bun,</li>
+    <li>Express,</li>
+    <li>JSDOM,</li>
+    <li>Axios.</li>
+  </ul>
+  2. Front-end:
+  <ul>
+    <li>HTML,</li>
+    <li>CSS,</li>
+    <li>Vanilla JavaScript with Vite.</li>
+  </ul>
+
+</details>
+
+<details>
+  <summary><strong>🚵 Hard Skills Demonstrated:</strong></summary><br />
+
+ ### 🔧 Backend Development
+- **Express.js**: Creating HTTP server and defining RESTful routes.
+- **Axios**: Making HTTP requests with custom headers to simulate browser behavior.
+- **JSDOM**: Manipulating HTML as a virtual DOM to extract data from web pages.
+- **Error Handling**: Using `try/catch` blocks to capture failures and return appropriate responses.
+- **CORS**: Configuring cross-origin access policies between frontend and backend.
+- **Fallback with Mocks**: Implementing alternative logic to ensure functionality in case of external failure.
+
+### ⚙️ Environment & Tools
+- **Bun**: Using a modern runtime for optimized backend development.
+- **Vite**: Setting up a fast and lightweight frontend development environment.
+- **Development Proxy**: Redirecting API calls via `vite.config.js` to avoid CORS issues.
+
+### 🎨 Frontend Development
+- **HTML5 & CSS3**: Semantic page structure and responsive styling.
+- **Vanilla JavaScript**: DOM manipulation, event handling, and AJAX requests using `fetch`.
+- **Modularization**: Separating responsibilities across HTML, JS, and CSS files.
+- **JSON Data Handling**: Dynamically displaying results based on API responses.
+
+</details>
+
+# Guidelines
+<details>
+  <summary><strong>⚠ Before you start using the application</strong></summary><br />
+
+  1. Clone the repository
+
+  - Use the command: `git clone git@github.com:otaviovcn/amazon_scraper.git`.
+  - Enter the repository folder you just cloned:
+    - `cd amazon_scraper`
+
+  2. Install Front-end dependencies
+  - Open a new terminal and type:
+    - `cd frontend && npm install`
+  
+  3. Install Back-end Dependencies
+  - Open a new terminal and type:
+    - `cd backend && bun install`
+
+</details>
+
+<details>
+  <summary><strong>🛠 How to initialize the application?</strong></summary><br />
+
+  To follow the instructions below, make sure you have completed the previous steps.
+
+<strong>To run the interface (front-end)</strong>
+
+- Open a new terminal and enter the following command:
+
+  ```bash
+  $ cd frontend && npm run dev
+  ```
+
+<strong>To run the server (back-end)</strong>
+
+- Open a new terminal and enter the following command:
+
+  ```bash
+  $ cd backend && npm start
+  ```  
+</details>
+
+
+# Funcional Print
+
+![Banner do Projeto](./assets/images/print.png)
