@@ -82,9 +82,10 @@ app.get("/api/scrape", async (req, res) => {
 
   } catch (err) {
     console.error("Error scraping Amazon:", err);
-    //Before I just returned the error below, but to avoid being left with nothing
-    //  I added the representative mock
-    // res.status(500).json({ error: "Failed to scrape Amazon" });
+    // Previously, I simply returned the error below, but to avoid leaving it empty,
+    //  I added a representative mock. However, in a real-world situation,
+    //  I would display the original error.
+    // -> res.status(500).json({ error: "Failed to scrape Amazon" });
     // mock results will be returned in case of an error
     res.json(mockResults);
   }
