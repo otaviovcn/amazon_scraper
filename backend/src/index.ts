@@ -1,9 +1,11 @@
 import express from "express";
 import axios from "axios";
 import { JSDOM } from "jsdom";
+import cors from "cors";
 
 const app = express();
 const PORT = 3000;
+app.use(cors());
 
 // I usually use this GET on the root endpoint to check if the server is working correctly
 app.get("/", (_, res) => {
