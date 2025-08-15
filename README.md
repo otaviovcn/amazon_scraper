@@ -88,11 +88,15 @@ This approach allows validation of the entire project structure, including:
 - **Modularization**: Separating responsibilities across HTML, JS, and CSS files.
 - **JSON Data Handling**: Dynamically displaying results based on API responses.
 
-</details>
+</details><br>
 
-# Guidelines
+
+# 👀 Guidelines - READ CAREFULLY 👀
+
 <details>
-  <summary><strong>⚠ Before you start using the application</strong></summary><br />
+  <summary><strong>⚠️ Before you start using the application</strong></summary><br />
+
+  > ⚠️ Make sure you have already installed [Bun(v1.2.20)](https://bun.com/blog/bun-v1.2.20) and [Node(v22.18.0)](https://nodejs.org/en/blog/release/v22.18.0) on your machine to avoid any incompatibility issues while the application is running.
 
   1. Clone the repository
 
@@ -130,7 +134,17 @@ This approach allows validation of the entire project structure, including:
   ```bash
   $ cd backend && npm start
   ```  
-</details>
+</details><br/>
+
+# 💡Future Improvements
+
+- Limit product titles for better framing
+
+- Implement results pagination
+
+- Add automated testing
+
+- Improve responsiveness
 
 
 # Funcional Print
