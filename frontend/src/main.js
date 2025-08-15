@@ -36,6 +36,12 @@ form.addEventListener("submit", async (e) => {
         rating: "4.7 out of 5 stars",
         reviews: "3,392",
       },
+      {
+        title: 'Lined Spiral Journal Notebook for Women & Men, 140 Pages, College Ruled Hardcover Notebook for Work & Note Taking, Journals for Writing, A5(6"x8") - Green',
+        image: "https://m.media-amazon.com/images/I/61nJOjSLjbL._AC_UL320_.jpg",
+        rating: "4.7 out of 5 stars",
+        reviews: "3,392",
+      },
           
     ];
 
