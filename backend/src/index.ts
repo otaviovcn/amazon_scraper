@@ -3,9 +3,18 @@ import axios from "axios";
 import { JSDOM } from "jsdom";
 import cors from "cors";
 
+// Generic mock, but just in case the error is due to Amazon's defense mechanisms
+//  against data scraping blocking the request.
+import mockResults from "../mocks/tvMocks";
+
 const app = express();
 const PORT = 3000;
-app.use(cors());
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET"],
+}));
+
 
 // I usually use this GET on the root endpoint to check if the server is working correctly
 app.get("/", (_, res) => {
@@ -15,6 +24,7 @@ app.get("/", (_, res) => {
 // This GET will allow you to scrape the Amazon page
 app.get("/api/scrape", async (req, res) => {
   const { keyword } = req.query;
+
 
   // If the 'keyword' parameter is not provided, an error message will be returned
   if (!keyword) {
@@ -26,12 +36,18 @@ app.get("/api/scrape", async (req, res) => {
     //  when the GET request is made, it appears to be a browser request.
     // The Amazon was blocking it and this is to avoid being blocked by Amazon's anti-scraping measures
     const response = await axios.get(
-      `https://www.amazon.com/s?k=${keyword}`,
+      `https://www.amazon.com.br/s?k=${keyword}`,
       {
         headers: {
-          "User-Agent": "Mozilla/5.0"
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
+          "Accept-Language": "en-US,en;q=0.9",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+          "Connection": "keep-alive",
+          "Referer": "https://www.amazon.com.br/"
         },
-      });
+      }
+    );
 
     //This part is to make a copy of the original DOM, so that it is not 
     // necessary to have the page open to make the necessary manipulations
@@ -51,7 +67,8 @@ app.get("/api/scrape", async (req, res) => {
 
       const title: string | undefined = product.querySelector('h2')?.textContent?.trim();
       const image: string | undefined = product.querySelector('img')?.src;
-      const rating: string | undefined = product.querySelector('[aria-label*="out of 5 stars"]')?.textContent?.trim();
+      // The 'aria-label' attribute is used to capture the rating, which is a string that contains the number of stars in Portuguese
+      const rating: string | undefined = product.querySelector('[aria-label*="de 5 estrelas"]')?.textContent.trim();
       const reviews: string | undefined = product.querySelector('.s-link-style .s-underline-text')?.textContent?.trim();
 
 
@@ -62,9 +79,14 @@ app.get("/api/scrape", async (req, res) => {
 
     // The results are sent in JSON format
     res.json(results);
+
   } catch (err) {
     console.error("Error scraping Amazon:", err);
-    res.status(500).json({ error: "Failed to scrape Amazon" });
+    //Before I just returned the error below, but to avoid being left with nothing
+    //  I added the representative mock
+    // res.status(500).json({ error: "Failed to scrape Amazon" });
+    // mock results will be returned in case of an error
+    res.json(mockResults);
   }
 
 });
