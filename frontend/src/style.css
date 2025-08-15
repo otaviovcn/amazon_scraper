@@ -39,7 +39,6 @@ body {
   
 } 
 
-
 /* < Search Fields  >  */
 
 #search-field {
@@ -71,12 +70,6 @@ body {
 /* < Header /> */
 
 /* < Results > */
-/* #results {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  padding: 20px;
-} */
 
 #results {
   display: grid;
@@ -85,7 +78,6 @@ body {
   padding: 20px;
   justify-content: center;
 }
-
 
 /* < Product Box > */
 .product-card {
@@ -98,7 +90,6 @@ body {
   flex-direction: column;
   margin: 0 auto;
 }
-
 
 /* < Products Info > */
 .product-card img {
